@@ -1,0 +1,8 @@
+### 添加用户
+POST http://localhost:8882/api/v1/user/add
+Content-Type: application/json
+{"name":"jack","email":"123@126.com"}
+
+
+### 分页查询用户
+GET http://localhost:8882/api/v1/user/page?size=3&page=0
