@@ -46,10 +46,49 @@ class JpaApplicationTests {
         userRepository.findAllByName("zhangsan").forEach(System.out::println);
     }
 
+
+
     @Test
     public  void  testFindAllByNameLikeAndPasswordLike(){
         userRepository.findAllByNameLikeAndPasswordLike("%zhang%","%123%").forEach(System.out::println);
     }
+
+
+    @Test
+    public  void  testFindAllUser(){
+        userRepository.findAllUser().forEach(System.out::println);
+    }
+
+    @Test
+    public  void  testFindAllUserByName(){
+        userRepository.findAllUserByName().forEach(System.out::println);
+    }
+
+
+    @Test
+    public  void  testFindAllUser2(){
+        userRepository.findAllUser2().forEach(System.out::println);
+    }
+
+    @Test
+    public  void  testFindAllUser3(){
+        userRepository.findAllUser3().forEach(System.out::println);
+    }
+
+
+    @Test
+    public  void  testUpdateNameById(){
+        userRepository.updateNameById("feather6666",1L);
+    }
+
+    @Test
+    public  void  testUpdateNameById2(){
+        userRepository.updateNameById2("feather6666568675",3L);
+    }
+
+
+
+
 
 
 
