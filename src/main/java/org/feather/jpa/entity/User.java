@@ -1,10 +1,8 @@
 package org.feather.jpa.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
+
+import javax.persistence.*;
 
 
 /**
@@ -18,15 +16,21 @@ import lombok.Data;
  */
 @Entity
 @Data
+@Table(name="jpa_user")
 public class User {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+
+    @Column(name = "name")
     private String name;
 
-    private String email;
+
+    @Column(name = "password")
+    private String password;
 
 }
