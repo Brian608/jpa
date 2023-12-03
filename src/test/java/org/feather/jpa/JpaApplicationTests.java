@@ -1,9 +1,9 @@
 package org.feather.jpa;
 
-import org.feather.jpa.entity.Account;
-import org.feather.jpa.entity.AccountDetail;
-import org.feather.jpa.entity.User;
+import org.feather.jpa.entity.*;
 import org.feather.jpa.repository.AccountRepository;
+import org.feather.jpa.repository.ArticleRepository;
+import org.feather.jpa.repository.AuthorRepository;
 import org.feather.jpa.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class JpaApplicationTests {
@@ -20,6 +22,13 @@ class JpaApplicationTests {
 
     @Autowired
     private AccountRepository accountRepository;
+
+
+    @Autowired
+    private AuthorRepository authorRepository;
+
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @Test
     void contextLoads() {
@@ -124,6 +133,35 @@ class JpaApplicationTests {
 
     }
 
+
+    @Test
+    public  void testAuthor(){
+        Author author=new Author();
+        author.setName("feather");
+        Author save = authorRepository.save(author);
+        List<Article> articles=new ArrayList<>();
+
+        for (int i = 0; i <5 ; i++) {
+            Article article=new Article();
+            article.setTitle("文章"+i);
+            article.setContent("内容"+i);
+            article.setAuthor(save);
+            articles.add(article);
+        }
+        articleRepository.saveAll(articles);
+    }
+
+
+    @Test
+    public  void testDelArticle(){
+        articleRepository.deleteById(1L);
+    }
+
+
+    @Test
+    public  void testQueryAuthor(){
+        authorRepository.findById(1L).ifPresent(System.out::println);
+    }
 
 
 
