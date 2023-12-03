@@ -4,33 +4,34 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
 /**
  * @projectName: jpa
  * @package: org.feather.jpa.entity
- * @className: User
+ * @className: AccountDetail
  * @author: feather
  * @description:
- * @since: 12-Nov-23 4:01 PM
+ * @since: 03-Dec-23 9:26 PM
  * @version: 1.0
  */
 @Entity
 @Data
-@Table(name="jpa_user")
-public class User {
-
+@Table(name="jpa_account_detail")
+public class AccountDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
      Long id;
 
+    @Column(name = "address")
+     String address;
 
-    @Column(name = "name")
-     String name;
+    @Column(name = "email")
+     String email;
 
+    @Column(name = "phone")
+     String phone;
 
-    @Column(name = "password")
-     String password;
-
+    @Column(name = "real_name")
+     String realName;
 }
