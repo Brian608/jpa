@@ -1,10 +1,7 @@
 package org.feather.jpa;
 
 import org.feather.jpa.entity.*;
-import org.feather.jpa.repository.AccountRepository;
-import org.feather.jpa.repository.ArticleRepository;
-import org.feather.jpa.repository.AuthorRepository;
-import org.feather.jpa.repository.UserRepository;
+import org.feather.jpa.repository.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +26,12 @@ class JpaApplicationTests {
 
     @Autowired
     private ArticleRepository articleRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     @Test
     void contextLoads() {
@@ -164,7 +167,35 @@ class JpaApplicationTests {
     }
 
 
+    @Test
+    public  void testSaveAuthority(){
+        Authority authority=new Authority();
+        authority.setName("ROLE_ADMIN");
+        authorityRepository.save(authority);
+    }
 
+
+    @Test
+    public  void testSaveUsers(){
+      Users users=new Users();
+      users.setUsername("feather");
+      users.setPassword("12312");
+        Authority authority = authorityRepository.findById(1L).get();
+        List<Authority> authorityList=new ArrayList<>();
+        authorityList.add(authority);
+        users.setAuthorityList(authorityList);
+        usersRepository.save(users);
+
+    }
+
+
+    /**
+     * users 表中删除一条记录，同时user_authority 能够级联删除一条记录
+     */
+    @Test
+    public  void testDelUsers(){
+       usersRepository.deleteById(1L);
+    }
 
 
 
